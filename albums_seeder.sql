@@ -33,7 +33,7 @@ VALUES('Michael Jackson', 'Thriller', 1982, 47.9, 'pop, rock, funk'),
       ('Nirvana', 'Nevermind', 1991, 16.7, 'grunge, alternative rock'),
       ('Santana', 'Supernatural', 1999, 20.5, 'latin rock'),
       ('Guns N'' Roses', 'Appetite for Destruction', 1987, 21.6, 'hard rock'),
-      ('Elton John', 'Goodebye Yellow Brick Road', 1973, 8.5, 'rock, pop rock, glam rock');
+      ('Elton John', 'Goodbye Yellow Brick Road', 1973, 8.5, 'rock, pop rock, glam rock');
 
 
 show tables;
