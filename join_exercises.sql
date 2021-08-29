@@ -34,4 +34,11 @@ join employees e on dm.emp_no = e.emp_no;
 # Find the current titles of employees
 # currently working in the Customer Service department.
 
-
+select t.title, count(t.emp_no) as total
+from departments d
+inner join dept_emp de on d.dept_no = de.dept_no
+inner join titles t on de.emp_no = t.emp_no
+where d.dept_name = 'Customer Service'
+and de.to_date = '9999-01-01'
+and t.to_date = '9999-01-01'
+group by t.title
