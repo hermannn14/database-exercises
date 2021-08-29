@@ -26,7 +26,12 @@ use employees;
 #               ON d.dept_no = de.dept_no
 # WHERE de.to_date = '9999-01-01' AND e.emp_no = 10001;
 
-SELECT dep.dept_name, concat(e.first_name, ' ', e.last_name)
+SELECT dep.dept_name as `Department Name`, concat(e.first_name, ' ', e.last_name) as `Department Manager`
 FROM employees.departments dep
 JOIN dept_manager dm on dep.dept_no = dm.dept_no
 join employees e on dm.emp_no = e.emp_no;
+
+# Find the current titles of employees
+# currently working in the Customer Service department.
+
+
