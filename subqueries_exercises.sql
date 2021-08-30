@@ -17,3 +17,21 @@ where emp_no in
       (select emp_no
           from employees e
           where e.first_name = 'Aamod');
+
+
+
+select t.title
+from titles t
+where emp_no in
+      (select emp_no
+       from employees e
+       where e.first_name = 'Aamod');
+
+# Find all the current department managers that are female.
+
+select concat(e.first_name, ' ', e.last_name) as Name, e.gender
+from employees e
+where e.emp_no in
+      (select emp_no
+       from  dept_manager
+       where e.gender = 'F' and dept_manager.to_date = '9999-01-01');
