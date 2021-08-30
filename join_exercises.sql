@@ -31,6 +31,23 @@ FROM employees.departments dep
 JOIN dept_manager dm on dep.dept_no = dm.dept_no
 join employees e on dm.emp_no = e.emp_no;
 
+# Find the name of all departments currently managed by women.
+# +------------------+--------------------+
+# | Department Name  | Department Manager |
+# +------------------+--------------------+
+# | Development      | Leon DasSarma      |
+# | Finance          | Isamu Legleitner   |
+# | Human Resources  | Karsten Sigstam    |
+# | Research         | Hilary Kambil      |
+# +------------------+--------------------+
+
+SELECT dep.dept_name as `Department Name`, concat(e.first_name, ' ', e.last_name) as `Department Manager`
+FROM employees as e
+         JOIN dept_manager dm on e.emp_no = dm.emp_no
+         join departments dep on dm.dept_no = dep.dept_no
+         where e.gender = 'F' and dm.to_date = '9999-01-01'
+order by dep.dept_name;
+
 # Find the current titles of employees
 # currently working in the Customer Service department.
 # +--------------------+-------+
@@ -51,7 +68,7 @@ inner join titles t on de.emp_no = t.emp_no
 where d.dept_name = 'Customer Service'
 and de.to_date = '9999-01-01'
 and t.to_date = '9999-01-01'
-group by t.title
+group by t.title;
 
 
 # Find the current salary of all current managers.
@@ -74,3 +91,7 @@ FROM employees.departments dep
          JOIN dept_manager dm on dep.dept_no = dm.dept_no
          join employees e on dm.emp_no = e.emp_no
          join salaries s on e.emp_no = s.emp_no;
+where d.dept_name = 'Customer Service'
+and de.to_date = '9999-01-01'
+and t.to_date = '9999-01-01'
+group by salary;
