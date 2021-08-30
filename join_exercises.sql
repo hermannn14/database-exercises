@@ -86,12 +86,31 @@ group by t.title;
 # | Sales              | Hauke Zhang        | 101987 |
 # +--------------------+--------------------+--------+
 
-SELECT dep.dept_name as `Department Name`, concat(e.first_name, ' ', e.last_name) as `Department Manager`, salary as `Salary`
-FROM employees.departments dep
-         JOIN dept_manager dm on dep.dept_no = dm.dept_no
-         join employees e on dm.emp_no = e.emp_no
-         join salaries s on e.emp_no = s.emp_no;
-where d.dept_name = 'Customer Service'
-and de.to_date = '9999-01-01'
-and t.to_date = '9999-01-01'
-group by salary;
+# SELECT dep.dept_name as `Department Name`, concat(e.first_name, ' ', e.last_name) as `Department Manager`, salary as `Salary`
+# FROM employees.departments dep
+#          JOIN dept_manager dm on dep.dept_no = dm.dept_no
+#          join employees e on dm.emp_no = e.emp_no
+#          join salaries s on e.emp_no = s.emp_no;
+# where d.dept_name = 'Customer Service'
+# and de.to_date = '9999-01-01'
+# and t.to_date = '9999-01-01'
+# group by salary;
+
+select  dep.dept_name as `Department Name`,concat(e.first_name, ' ',e.last_name) as `Department Manager`, salary as `salary`
+from employees as e
+         join dept_manager dm on e.emp_no = dm.emp_no
+         join departments dep on dm.dept_no = dep.dept_no
+         join salaries s on e.emp_no = s.emp_no
+where s.to_date= '9999-01-01' and dm.to_date='9999-01-01'
+order by dept_name;
+
+# Bonus
+
+select concat(e.first_name, ' ',e.last_name) as Employee, d.dept_name as Department,
+       concat(e2.first_name, ' ',e2.last_name) as Manager
+from departments as d
+inner join dept_emp de on d.dept_no = de.dept_no
+inner join employees e on de.emp_no = e.emp_no
+inner join dept_manager dm on d.dept_no = dm.dept_no
+inner join employees as e2 on dm.emp_no = e2.emp_no
+where de.to_date = '9999-01-01' and dm.to_date = '9999-01-01';
